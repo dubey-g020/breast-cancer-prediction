@@ -3,98 +3,267 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Breast Cancer Prediction</title>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet">
 
     <style>
+
         body{
-            background: #0f172a;
-            color: white;
+            background: #f5f7fa;
         }
 
-        .card{
-            border-radius: 20px;
+        .main-container{
+            max-width: 1200px;
+            margin: 40px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0px 0px 20px rgba(0,0,0,0.1);
         }
 
         h1{
+            text-align: center;
+            margin-bottom: 30px;
             font-weight: bold;
         }
 
         .btn-custom{
-            background: #2563eb;
-            color: white;
-            font-size: 18px;
-            padding: 10px;
-            border-radius: 10px;
+            width: 100%;
+            margin-top: 15px;
         }
 
-        .btn-custom:hover{
-            background: #1d4ed8;
-            color: white;
+        .result-box{
+            margin-top: 30px;
+            text-align: center;
         }
 
-        .result{
-            font-size: 28px;
-            font-weight: bold;
-        }
     </style>
 </head>
 
 <body>
 
-<div class="container mt-5 mb-5">
+    <div class="container">
 
-    <div class="card p-5 shadow-lg">
+        <div class="main-container">
 
-        <h1 class="text-center text-dark mb-4">
-            Breast Cancer Prediction System
-        </h1>
+            <h1>Breast Cancer Prediction System</h1>
 
-        <form action="/predict" method="post">
+            <form action="/predict" method="POST">
 
-            <div class="row">
+                <div class="row">
 
-                {% for i in range(1,31) %}
+                    <!-- 30 INPUT FIELDS -->
 
-                <div class="col-md-4 mb-3">
+                    <div class="col-md-4 mb-3">
+                        <input type="text" id="f1" name="f1" class="form-control" placeholder="Mean Radius">
+                    </div>
 
-                    <input
-                        type="number"
-                        step="any"
-                        name="f{{i}}"
-                        class="form-control"
-                        placeholder="Feature {{i}}"
-                        required
-                    >
+                    <div class="col-md-4 mb-3">
+                        <input type="text" id="f2" name="f2" class="form-control" placeholder="Mean Texture">
+                    </div>
+
+                    <div class="col-md-4 mb-3">
+                        <input type="text" id="f3" name="f3" class="form-control" placeholder="Mean Perimeter">
+                    </div>
+
+                    <div class="col-md-4 mb-3">
+                        <input type="text" id="f4" name="f4" class="form-control" placeholder="Mean Area">
+                    </div>
+
+                    <div class="col-md-4 mb-3">
+                        <input type="text" id="f5" name="f5" class="form-control" placeholder="Mean Smoothness">
+                    </div>
+
+                    <div class="col-md-4 mb-3">
+                        <input type="text" id="f6" name="f6" class="form-control" placeholder="Mean Compactness">
+                    </div>
+
+                    <div class="col-md-4 mb-3">
+                        <input type="text" id="f7" name="f7" class="form-control" placeholder="Mean Concavity">
+                    </div>
+
+                    <div class="col-md-4 mb-3">
+                        <input type="text" id="f8" name="f8" class="form-control" placeholder="Mean Concave Points">
+                    </div>
+
+                    <div class="col-md-4 mb-3">
+                        <input type="text" id="f9" name="f9" class="form-control" placeholder="Mean Symmetry">
+                    </div>
+
+                    <div class="col-md-4 mb-3">
+                        <input type="text" id="f10" name="f10" class="form-control" placeholder="Mean Fractal Dimension">
+                    </div>
+
+                    <div class="col-md-4 mb-3">
+                        <input type="text" id="f11" name="f11" class="form-control" placeholder="Radius Error">
+                    </div>
+
+                    <div class="col-md-4 mb-3">
+                        <input type="text" id="f12" name="f12" class="form-control" placeholder="Texture Error">
+                    </div>
+
+                    <div class="col-md-4 mb-3">
+                        <input type="text" id="f13" name="f13" class="form-control" placeholder="Perimeter Error">
+                    </div>
+
+                    <div class="col-md-4 mb-3">
+                        <input type="text" id="f14" name="f14" class="form-control" placeholder="Area Error">
+                    </div>
+
+                    <div class="col-md-4 mb-3">
+                        <input type="text" id="f15" name="f15" class="form-control" placeholder="Smoothness Error">
+                    </div>
+
+                    <div class="col-md-4 mb-3">
+                        <input type="text" id="f16" name="f16" class="form-control" placeholder="Compactness Error">
+                    </div>
+
+                    <div class="col-md-4 mb-3">
+                        <input type="text" id="f17" name="f17" class="form-control" placeholder="Concavity Error">
+                    </div>
+
+                    <div class="col-md-4 mb-3">
+                        <input type="text" id="f18" name="f18" class="form-control" placeholder="Concave Points Error">
+                    </div>
+
+                    <div class="col-md-4 mb-3">
+                        <input type="text" id="f19" name="f19" class="form-control" placeholder="Symmetry Error">
+                    </div>
+
+                    <div class="col-md-4 mb-3">
+                        <input type="text" id="f20" name="f20" class="form-control" placeholder="Fractal Dimension Error">
+                    </div>
+
+                    <div class="col-md-4 mb-3">
+                        <input type="text" id="f21" name="f21" class="form-control" placeholder="Worst Radius">
+                    </div>
+
+                    <div class="col-md-4 mb-3">
+                        <input type="text" id="f22" name="f22" class="form-control" placeholder="Worst Texture">
+                    </div>
+
+                    <div class="col-md-4 mb-3">
+                        <input type="text" id="f23" name="f23" class="form-control" placeholder="Worst Perimeter">
+                    </div>
+
+                    <div class="col-md-4 mb-3">
+                        <input type="text" id="f24" name="f24" class="form-control" placeholder="Worst Area">
+                    </div>
+
+                    <div class="col-md-4 mb-3">
+                        <input type="text" id="f25" name="f25" class="form-control" placeholder="Worst Smoothness">
+                    </div>
+
+                    <div class="col-md-4 mb-3">
+                        <input type="text" id="f26" name="f26" class="form-control" placeholder="Worst Compactness">
+                    </div>
+
+                    <div class="col-md-4 mb-3">
+                        <input type="text" id="f27" name="f27" class="form-control" placeholder="Worst Concavity">
+                    </div>
+
+                    <div class="col-md-4 mb-3">
+                        <input type="text" id="f28" name="f28" class="form-control" placeholder="Worst Concave Points">
+                    </div>
+
+                    <div class="col-md-4 mb-3">
+                        <input type="text" id="f29" name="f29" class="form-control" placeholder="Worst Symmetry">
+                    </div>
+
+                    <div class="col-md-4 mb-3">
+                        <input type="text" id="f30" name="f30" class="form-control" placeholder="Worst Fractal Dimension">
+                    </div>
 
                 </div>
 
-                {% endfor %}
+                <!-- BUTTONS -->
 
-            </div>
+                <button
+                    type="button"
+                    class="btn btn-secondary btn-custom"
+                    onclick="loadSampleData()">
 
-            <button type="submit" class="btn btn-custom w-100 mt-3">
-                Predict Cancer
-            </button>
+                    Load Sample Data
 
-        </form>
+                </button>
 
-        {% if prediction_text %}
+                <button
+                    type="submit"
+                    class="btn btn-primary btn-custom">
 
-        <div class="text-center mt-4">
+                    Predict
 
-            <div class="result text-success">
-                {{ prediction_text }}
+                </button>
+
+            </form>
+
+            <!-- RESULT -->
+
+            <div class="result-box">
+
+                <h3>{{ prediction_text }}</h3>
+
+                <h4>{{ confidence_text }}</h4>
+
             </div>
 
         </div>
 
-        {% endif %}
-
     </div>
 
-</div>
+    <!-- JAVASCRIPT -->
+
+    <script>
+
+        function loadSampleData() {
+
+            const sampleData = [
+
+                17.99,
+                10.38,
+                122.8,
+                1001.0,
+                0.1184,
+                0.2776,
+                0.3001,
+                0.1471,
+                0.2419,
+                0.07871,
+                1.095,
+                0.9053,
+                8.589,
+                153.4,
+                0.006399,
+                0.04904,
+                0.05373,
+                0.01587,
+                0.03003,
+                0.006193,
+                25.38,
+                17.33,
+                184.6,
+                2019.0,
+                0.1622,
+                0.6656,
+                0.7119,
+                0.2654,
+                0.4601,
+                0.1189
+            ];
+
+            for(let i = 0; i < sampleData.length; i++) {
+
+                document.getElementById(`f${i+1}`).value = sampleData[i];
+            }
+        }
+
+    </script>
 
 </body>
 </html>
